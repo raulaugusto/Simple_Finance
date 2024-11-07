@@ -79,7 +79,7 @@ const AddTransactionButton = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      amount: 0,
+      amount: 50,
       type: TransactionType.EXPENSE,
       category: TransactionCategory.OTHER,
       paymentMethod: TransactionPaymentMethod.CASH,
