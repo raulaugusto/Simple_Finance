@@ -3,7 +3,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { Mulish } from "next/font/google";
 
+const mulish = Mulish({
+  subsets: ["latin-ext"],
+});
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -28,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
+        className={`${geistSans.variable} ${mulish.className} ${geistMono.variable} dark antialiased`}
       >
         <ClerkProvider
           appearance={{
