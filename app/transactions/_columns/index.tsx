@@ -15,8 +15,41 @@ import { PencilIcon, Trash2Icon } from "lucide-react";
 
 export const TransactionColumns: ColumnDef<Transaction>[] = [
   {
+    accessorKey: "actions",
+    header: "Ações",
+    cell: () => {
+      return (
+        <div className="space-x-1">
+          <Button
+            variant="ghost"
+            size={"icon"}
+            className="text-muted-foregrounds"
+          >
+            <PencilIcon></PencilIcon>
+          </Button>
+          <Button
+            variant="ghost"
+            size={"icon"}
+            className="text-muted-foregrounds"
+          >
+            <Trash2Icon></Trash2Icon>
+          </Button>
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: "name",
     header: "Nome",
+  },
+  {
+    accessorKey: "amount",
+    header: "Valor",
+    cell: ({ row: { original: transaction } }) =>
+      new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(Number(transaction.amount)),
   },
   {
     accessorKey: "type",
@@ -46,38 +79,5 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
         month: "long",
         year: "numeric",
       }),
-  },
-  {
-    accessorKey: "amount",
-    header: "Valor",
-    cell: ({ row: { original: transaction } }) =>
-      new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(Number(transaction.amount)),
-  },
-  {
-    accessorKey: "actions",
-    header: "",
-    cell: () => {
-      return (
-        <div className="space-x-1">
-          <Button
-            variant="ghost"
-            size={"icon"}
-            className="text-muted-foregrounds"
-          >
-            <PencilIcon></PencilIcon>
-          </Button>
-          <Button
-            variant="ghost"
-            size={"icon"}
-            className="text-muted-foregrounds"
-          >
-            <Trash2Icon></Trash2Icon>
-          </Button>
-        </div>
-      );
-    },
   },
 ];
