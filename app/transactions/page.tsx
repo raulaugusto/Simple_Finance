@@ -1,5 +1,23 @@
-const TransactionsPage = () => {
-  return <h1>transactions page</h1>;
+import { db } from "../_lib/prisma";
+import { Button } from "../_components/ui/button";
+import { ArrowDownUpIcon } from "lucide-react";
+import { DataTable } from "../_components/ui/data-table";
+import { TransactionColumns } from "./_columns";
+
+const TransactionsPage = async () => {
+  const transactions = await db.transaction.findMany({});
+  return (
+    <div className="space-y-6 p-6">
+      <div className="flex w-full items-center justify-between p-6">
+        <h1 className="text-2xl font-bold">Transações</h1>
+        <Button className="rounded-full">
+          Adicionar Transação
+          <ArrowDownUpIcon></ArrowDownUpIcon>
+        </Button>
+      </div>
+      <DataTable columns={TransactionColumns} data={transactions}></DataTable>
+    </div>
+  );
 };
 
 export default TransactionsPage;
