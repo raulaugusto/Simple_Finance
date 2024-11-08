@@ -6,7 +6,7 @@ import AddTransactionButton from "../_components/add-transaction-button";
 const TransactionsPage = async () => {
   const transactions = await db.transaction.findMany({
     orderBy: {
-      createdAt: "asc", // Ordena do mais recente para o mais antigo
+      type: "desc", // Ordena do mais recente para o mais antigo
     },
   });
   return (
