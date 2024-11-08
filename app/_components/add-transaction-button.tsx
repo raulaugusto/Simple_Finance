@@ -44,7 +44,6 @@ import {
 } from "../_constants/transactions";
 import { DatePicker } from "./ui/date-picker";
 import { addTransaction } from "../_actions/add-transaction";
-import { revalidatePath } from "next/cache";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -155,7 +154,7 @@ const AddTransactionButton = () => {
             />
             <FormField
               control={form.control}
-              name="category"
+              name="type"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tipo</FormLabel>
